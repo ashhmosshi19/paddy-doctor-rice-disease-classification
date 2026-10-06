@@ -1,0 +1,63 @@
+version: v1_clean_8class
+status: draft_needs_agronomist_review
+target_task: single_label_rice_disease_classification
+canonical_labels:
+  - id: 0
+    name: bacterial_leaf_blight
+    vietnamese_display_name: bạc lá
+    status: accepted_for_baseline
+  - id: 1
+    name: bacterial_leaf_streak
+    vietnamese_display_name: sọc lá vi khuẩn
+    status: accepted_for_baseline
+  - id: 2
+    name: bacterial_panicle_blight
+    vietnamese_display_name: bạc lá/bạc bông vi khuẩn
+    status: accepted_for_baseline
+  - id: 3
+    name: blast
+    vietnamese_display_name: đạo ôn
+    status: accepted_for_baseline
+  - id: 4
+    name: brown_spot
+    vietnamese_display_name: đốm nâu
+    status: accepted_for_baseline
+  - id: 5
+    name: downy_mildew
+    vietnamese_display_name: sương mai
+    status: accepted_for_baseline
+  - id: 6
+    name: normal
+    vietnamese_display_name: khỏe mạnh/bình thường
+    status: accepted_for_baseline
+  - id: 7
+    name: tungro
+    vietnamese_display_name: tungro
+    status: accepted_for_baseline
+quarantined_labels:
+  - name: hispa
+    reason: pest_label_not_clean_disease_class
+    required_action: agronomist_review_before_model_inclusion
+  - name: dead_heart
+    reason: pest_or_symptom_label_not_clean_disease_class
+    required_action: agronomist_review_before_model_inclusion
+unknown_policy:
+  other_unknown: keep_out_of_first_supervised_baseline
+  needs_expert_review: keep_out_of_first_supervised_baseline
+split_policy:
+  preferred_group_key: field_id_or_capture_session_id
+  current_kaggle_baseline_split: image_only_label_stratified_dhash_group_split
+  current_split_group_key: dhash
+  disabled_proxy_group_key: capture_session_id_from_variety_age
+  reason_proxy_group_disabled: field_metadata_unavailable_for_kaggle_competition_flow
+metadata_limitations:
+  - province_missing
+  - season_missing
+  - real_field_id_missing
+  - real_capture_session_id_missing
+current_flow:
+  mode: kaggle_image_only_submission
+  metadata_used_for_training: false
+  metadata_used_for_inference: false
+  submission_script: scripts/create_kaggle_submission.py
+  submission_file: submission.csv

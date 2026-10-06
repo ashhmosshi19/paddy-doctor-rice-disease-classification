@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.env
+data/
+outputs/
+checkpoints/
+*.pt
+*.pth
+submission.csv
+*.zip
+wandb/
